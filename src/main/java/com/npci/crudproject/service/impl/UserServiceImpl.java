@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.npci.crudproject.dao.UserDao; 
 import com.npci.crudproject.entity.Users;
 import com.npci.crudproject.repository.UserRepository;
+import com.npci.crudproject.response.UserDepartmentResponse;
 import com.npci.crudproject.service.UserService;
 
 @Service
@@ -14,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserDao userDao;
 
 	@Override
 	public List<Users> getAllUsers() {
@@ -51,6 +56,18 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<Users> getuserBySalary(float salary) {
+		// TODO Auto-generated method stub
+		return userRepository.getuserBySalary(salary);
+	}
+
+	@Override
+	public List<UserDepartmentResponse> getUserDepartMent() {
+		
+		return userDao.getUserDepartment();
 	}
 
 }
