@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.npci.crudproject.dao.UserDao; 
 import com.npci.crudproject.entity.Users;
+import com.npci.crudproject.exception.ResourceNotFoundException;
 import com.npci.crudproject.repository.UserRepository;
 import com.npci.crudproject.response.UserDepartmentResponse;
 import com.npci.crudproject.service.UserService;
@@ -29,7 +30,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Users getUserById(int userId) {
 		// TODO Auto-generated method stub
-		return userRepository.findById(userId).orElse(null);
+//		return userRepository.findById(userId).orElse(null);
+		
+		return userRepository
+				.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not Found with id: " + userId));
+				
 	}
 
 	@Override

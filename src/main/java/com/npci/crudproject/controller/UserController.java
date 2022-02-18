@@ -19,7 +19,7 @@ import com.npci.crudproject.response.UserDepartmentResponse;
 import com.npci.crudproject.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 	
 	@Autowired
@@ -40,19 +40,28 @@ public class UserController {
 		return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
 	}
 	
+//	@GetMapping("/getById/{id}")
+//	public ResponseEntity<Users> getUserById(@PathVariable("id") int userId){
+//		
+//		Users users = null;
+//		
+//		try {
+//			users = userService.getUserById(userId);
+//		} catch (Exception ex) {
+//			ex.getMessage();
+//		}
+//		
+//		return new ResponseEntity<Users>(users, HttpStatus.OK);
+//	}
+	
 	@GetMapping("/getById/{id}")
-	public ResponseEntity<Users> getUserById(@PathVariable("id") int userId){
+	public Users getUserById(@PathVariable("id") int userId){
 		
 		Users users = null;
 		
-		try {
-			users = userService.getUserById(userId);
-			
-		} catch (Exception ex) {
-			ex.getMessage();
-		}
+		users = userService.getUserById(userId);
 		
-		return new ResponseEntity<Users>(users, HttpStatus.OK);
+		return users;
 	}
 	
 	@PostMapping("/addorupdate") 

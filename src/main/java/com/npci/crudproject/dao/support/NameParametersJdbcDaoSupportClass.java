@@ -12,3 +12,5 @@ public class NameParametersJdbcDaoSupportClass extends NamedParameterJdbcDaoSupp
 		setDataSource(dataSource);
 	}
 }
+
+
